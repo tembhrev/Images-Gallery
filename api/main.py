@@ -3,17 +3,19 @@ import requests
 from flask import Flask, request
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path="./.env.local")
+load_dotenv(dotenv_path="C:/Users/VIKAS/Desktop/Learning/25th_Dec/Web_Development/images-gallery/api/.venv/.env.local")
 
 UNSPLASH_URL="https://api.unsplash.com/photos/random"
 UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY", "")
+DEBUG=os.environ.get("DEBUG", True)
+print(DEBUG)
 
 if not UNSPLASH_KEY:
     raise EnvironmentError("Please create .env.local file and insert there UNSPLASH_KEY")
     
-    
-
 app = Flask(__name__)
+
+app.config["DEBUG"] = DEBUG
 
 @app.route("/new-image")
 def new_image():
