@@ -4,11 +4,12 @@ from flask import Flask, request
 from dotenv import load_dotenv
 from flask_cors import CORS
 
-load_dotenv(dotenv_path="C:/Users/VIKAS/Desktop/Learning/25th_Dec/Web_Development/images-gallery/api/.venv/.env.local")
+load_dotenv(dotenv_path=".env.local")
 
 UNSPLASH_URL="https://api.unsplash.com/photos/random"
 UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY", "")
 DEBUG=os.environ.get("DEBUG", True)
+print(UNSPLASH_KEY)
 print(DEBUG)
 
 if not UNSPLASH_KEY:
