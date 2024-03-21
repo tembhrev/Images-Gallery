@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-import { useState } from "react";
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
 import Search from "./components/Search";
@@ -14,6 +13,22 @@ const API_URL = process.env.API_URL || "http://127.0.0.1:5050"
 const App = () => {
   const [word, setWord] = useState("");
   const [images, setImages] = useState([]);
+
+  const getSavedImages = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/images`);
+      setImages(res.data || []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect(() => getSavedImages(), []);
+
+  useEffect(() => {
+    getSavedImages()
+    // Whatever else we want to do after the state has been updated.
+ }, [])
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
