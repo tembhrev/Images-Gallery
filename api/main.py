@@ -52,7 +52,7 @@ def images():
 def image(image_id):
     if request.method == "DELETE":
         # delete image from the database
-        result = images_collection.delete_one({"_id": image_id}
+        result = images_collection.delete_one({"_id": image_id})
         if not result:
             return {"error": "Image wasn't deleted.Please try again"}
         if result and not result.deleted_count:
